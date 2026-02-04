@@ -160,12 +160,14 @@
 
         @keyframes oopsZoomOut {
             0% {
-                transform: translateX(-50%) scale(2);
+                top: 50%;
+                transform: translate(-50%, -50%) scale(3);
                 opacity: 0;
             }
 
             100% {
-                transform: translateX(-50%) scale(1);
+                top: 10%;
+                transform: translate(-50%, 0) scale(1);
                 opacity: 1;
             }
         }
@@ -228,8 +230,8 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 600px;
-            margin-top: 22vh;
-            /* Moved down */
+            margin-top: 30vh;
+            /* Moved further down */
             position: relative;
             z-index: 2;
             border: 1px solid rgba(255, 255, 255, 0.5);
