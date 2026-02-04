@@ -209,33 +209,39 @@
         /* Responsive tweaks */
         @media (max-width: 768px) {
             header .container {
-                flex-direction: column;
-                gap: 10px;
-                padding-bottom: 10px;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                padding-bottom: 0;
             }
 
             .logo {
-                font-size: 1.2rem !important;
-                text-align: center;
+                font-size: 1.1rem !important;
+                text-align: left;
+                margin-bottom: 0 !important;
             }
 
             /* Hamburger Menu */
             .hamburger-menu {
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
-                width: 30px;
-                height: 21px;
+                justify-content: center;
+                gap: 4px;
+                width: 28px;
+                height: 28px;
                 cursor: pointer;
                 z-index: 1001;
+                padding: 4px;
+                /* Slightly smaller touch target area visually, but functional */
             }
 
             .hamburger-menu .bar {
                 width: 100%;
-                height: 3px;
+                height: 2px;
+                /* Thinner bars */
                 background-color: var(--text-main);
-                border-radius: 3px;
-                transition: var(--transition);
+                border-radius: 2px;
+                transition: transform 0.3s ease, opacity 0.3s ease;
             }
 
             /* Nav Menu Mobile */
@@ -273,7 +279,7 @@
 
             /* Hamburger Animation */
             .hamburger-menu.active .bar:nth-child(1) {
-                transform: translateY(9px) rotate(45deg);
+                transform: translateY(6px) rotate(45deg);
                 background-color: var(--primary-gold);
             }
 
@@ -282,13 +288,13 @@
             }
 
             .hamburger-menu.active .bar:nth-child(3) {
-                transform: translateY(-9px) rotate(-45deg);
+                transform: translateY(-6px) rotate(-45deg);
                 background-color: var(--primary-gold);
             }
 
             /* Ticker Mobile - Moved down to clear stacked header */
             #live-ticker {
-                top: 80px !important;
+                top: 60px !important;
             }
 
             .hero-grid {
