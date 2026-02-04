@@ -131,9 +131,47 @@
             left: 0;
             white-space: nowrap;
             pointer-events: none;
-            z-index: -2;
+            z-index: -3;
+            /* Moved behind OOPS text */
             opacity: 0.4;
             mix-blend-mode: normal;
+        }
+
+        /* 2.5 OOPS Background Text */
+        .oops-bg-text {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 15rem;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            color: rgba(0, 102, 204, 0.1);
+            /* Very subtle blue */
+            z-index: -2;
+            pointer-events: none;
+            white-space: nowrap;
+            animation: oopsZoomOut 1.5s ease-out forwards;
+            line-height: 1;
+        }
+
+        @keyframes oopsZoomOut {
+            0% {
+                transform: translateX(-50%) scale(2);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .oops-bg-text {
+                font-size: 8rem;
+                top: 20%;
+            }
         }
 
         .marquee-content {
@@ -282,6 +320,9 @@
 
         <!-- Sky Background -->
         <img src="sky.png" alt="Sky" class="hero-bg">
+
+        <!-- OOPS Background Text -->
+        <div class="oops-bg-text">OOPS..</div>
 
         <!-- Clouds Marquee -->
         <div class="marquee-container">
