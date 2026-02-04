@@ -673,44 +673,11 @@
             </div>
 
             <div class="hero-video">
-                <video id="heroVideo" autoplay muted playsinline>
+                <video autoplay loop muted playsinline>
                     <source src="character.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
-        </div>
-
-        <script>
-            const heroVideo = document.getElementById('heroVideo');
-            let isReversing = false;
-
-            heroVideo.addEventListener('ended', function () {
-                isReversing = true;
-                heroVideo.pause();
-                reversePlayback();
-            });
-
-            function reversePlayback() {
-                if (!isReversing) return;
-
-                // Speed up the reverse (0.08 is roughly 4-5x speed at 60fps)
-                // This helps avoid the "frozen" look of slow backward seeking
-                if (heroVideo.currentTime > 0.1) {
-                    heroVideo.currentTime -= 0.08;
-                    requestAnimationFrame(reversePlayback);
-                } else {
-                    isReversing = false;
-                    heroVideo.currentTime = 0;
-                    heroVideo.play();
-                }
-            }
-
-            // Safety: if user manually plays or it triggers, stop reversing
-            heroVideo.addEventListener('play', () => {
-                isReversing = false;
-            });
-        </script>
-        </div>
         </div>
     </section>
 
