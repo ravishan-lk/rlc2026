@@ -682,24 +682,32 @@
 
         <script>
             const heroVideo = document.getElementById('heroVideo');
-            let reverseInterval;
+            let isReversing = false;
 
             heroVideo.addEventListener('ended', function () {
-                // Video ended, start reversing
-                clearInterval(reverseInterval);
-                reverseInterval = setInterval(function () {
-                    heroVideo.currentTime -= 0.03; // Adjust speed of reverse
-                    if (heroVideo.currentTime <= 0) {
-                        clearInterval(reverseInterval);
-                        heroVideo.currentTime = 0;
-                        heroVideo.play(); // Play forward again
-                    }
-                }, 30); // ~30fps reverse
-            }, false);
+                isReversing = true;
+                heroVideo.pause();
+                reversePlayback();
+            });
 
-            // Ensure simple looping fallback just in case, though logic above handles it
+            function reversePlayback() {
+                if (!isReversing) return;
+
+                // Speed up the reverse (0.08 is roughly 4-5x speed at 60fps)
+                // This helps avoid the "frozen" look of slow backward seeking
+                if (heroVideo.currentTime > 0.1) {
+                    heroVideo.currentTime -= 0.08;
+                    requestAnimationFrame(reversePlayback);
+                } else {
+                    isReversing = false;
+                    heroVideo.currentTime = 0;
+                    heroVideo.play();
+                }
+            }
+
+            // Safety: if user manually plays or it triggers, stop reversing
             heroVideo.addEventListener('play', () => {
-                clearInterval(reverseInterval);
+                isReversing = false;
             });
         </script>
         </div>
