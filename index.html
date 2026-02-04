@@ -673,11 +673,36 @@
             </div>
 
             <div class="hero-video">
-                <video autoplay loop muted playsinline>
+                <video id="heroVideo" autoplay muted playsinline>
                     <source src="character.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
+        </div>
+
+        <script>
+            const heroVideo = document.getElementById('heroVideo');
+            let reverseInterval;
+
+            heroVideo.addEventListener('ended', function () {
+                // Video ended, start reversing
+                clearInterval(reverseInterval);
+                reverseInterval = setInterval(function () {
+                    heroVideo.currentTime -= 0.03; // Adjust speed of reverse
+                    if (heroVideo.currentTime <= 0) {
+                        clearInterval(reverseInterval);
+                        heroVideo.currentTime = 0;
+                        heroVideo.play(); // Play forward again
+                    }
+                }, 30); // ~30fps reverse
+            }, false);
+
+            // Ensure simple looping fallback just in case, though logic above handles it
+            heroVideo.addEventListener('play', () => {
+                clearInterval(reverseInterval);
+            });
+        </script>
+        </div>
         </div>
     </section>
 
